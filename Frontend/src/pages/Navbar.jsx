@@ -18,7 +18,7 @@ const Navbar = () => {
           <nav className="hidden md:flex items-center gap-6 ml-auto">
             <a href="/" className="text-gray-800 hover:text-amber-700 transition">Home</a>
             <a href="/events" className="text-gray-800 hover:text-amber-700 transition">Cultural Events</a>
-            <a href="/traditions" className="text-gray-800 hover:text-amber-700 transition">Heritage</a>
+            <a href="/heritage-map" className="text-gray-800 hover:text-amber-700 transition">Heritage</a>
             <a href="/gallery" className="text-gray-800 hover:text-amber-700 transition">Gallery</a>
             <a href="/about" className="text-gray-800 hover:text-amber-700 transition">About</a>
           </nav>

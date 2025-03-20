@@ -1,62 +1,40 @@
-// import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
-// import './App.css';
-// import './index.css';
-// import Navbar from './pages/Navbar.jsx';
-// import Home from './pages/Home.jsx';
-// import MapPage from './pages/MapPage';
-
-// const NavbarLayout = ({ children }) => {   
-//   return (     
-//     <>       
-//       <Navbar /> 
-//       {children}         
-//     </>   
-//   ); 
-// }; 
-
-// function App() {
-//   return (
-//     <BrowserRouter>
-//       <Navbar />
-//       <Routes>
-//         <Route path="/" element={<Home />} />
-//         <Route path="/heritage-map" element={<MapPage />} />
-//       </Routes>
-//     </BrowserRouter>
-//   );
-// }
-
-// export default App;
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
-import './index.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './pages/Navbar.jsx';
 import Home from './pages/Home.jsx';
+import Login from "./pages/Login";
+import Signup from './pages/Signup';
 import MapPage from './pages/MapPage';
 
-const NavbarLayout = ({ children }) => {
-  return (
-    <div className="w-full overflow-x-hidden">
-      <Navbar />
-      {children}
-    </div>
-  );
-};
-
 function App() {
+  const location = useLocation();
+
+  // Define the routes where the Navbar should not be displayed
+  const noNavbarRoutes = ['/login', '/signup'];
+
+  // Check if the current route is in the noNavbarRoutes array
+  const shouldShowNavbar = !noNavbarRoutes.includes(location.pathname);
+
   return (
-    <BrowserRouter>
+    <div>
+      {shouldShowNavbar && <Navbar />}
       <Routes>
-        <Route element={<NavbarLayout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/heritage-map" element={<MapPage />} />
-          </Routes>
-        </NavbarLayout>} />
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/heritage-map" element={<MapPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
-    </BrowserRouter>
+    </div>
   );
 }
 
-export default App;
+function AppWrapper() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}
+
+export default AppWrapper;
