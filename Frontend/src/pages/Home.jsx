@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import "./home.css";
 
+
 const Home = () => {
-  // Array of image paths for the slideshow
+
   const images = [
     "/public/image1.jpg",
     "/public/image2.jpg",
@@ -15,12 +16,11 @@ const Home = () => {
   // State to track current image index
   const [currentImage, setCurrentImage] = useState(0);
 
-  // Effect to change image every 5 seconds
+  // Effect to change image every 1.5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevIndex) => (prevIndex + 1) % images.length);
-    }, 1500); // 5 seconds interval
-
+    }, 1500); 
     // Clean up interval on component unmount
     return () => clearInterval(interval);
   }, []);
@@ -56,7 +56,7 @@ const Home = () => {
   return (
     <div className="bg-stone-50 min-h-screen w-full overflow-x-hidden">
       {/* Hero Section */}
-      <section className="w-full pt-32 pb-16 text-center md:text-left">
+      <section className="w-full pt-32 pb-16 left-0 text-center md:text-left">
         <div className="max-w-screen-xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/2 space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
@@ -319,3 +319,5 @@ const Home = () => {
 };
 
 export default Home;
+
+
