@@ -7,6 +7,15 @@ import Signup from './pages/Signup';
 import MapPage from './pages/MapPage';
 import Chatbot from './pages/Chatbot.jsx';
 
+const NavbarLayout = ({ children }) => {   
+  return (     
+    <>       
+      <Navbar /> 
+      {children}         
+    </>   
+  ); 
+}; 
+
 function App() {
   const location = useLocation();
 
