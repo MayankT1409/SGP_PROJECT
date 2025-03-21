@@ -1,19 +1,42 @@
 import React from 'react';
-import './App.css';
-import './index.css';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './pages/Navbar.jsx';
 import Home from './pages/Home.jsx';
-
-
+import Login from "./pages/Login";
+import Signup from './pages/Signup';
+import MapPage from './pages/MapPage';
+import Chatbot from './pages/Chatbot.jsx';
 
 function App() {
+  const location = useLocation();
+
+  // Define the routes where the Navbar should not be displayed
+  const noNavbarRoutes = ['/login', '/signup'];
+
+  // Check if the current route is in the noNavbarRoutes array
+  const shouldShowNavbar = !noNavbarRoutes.includes(location.pathname);
+
   return (
     <div>
-      <Navbar />
-      <Home />
+      {shouldShowNavbar && <Navbar />}
+      <Routes>
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/heritage-map" element={<MapPage />} />
+        <Route path="/Chatbot" element={<Chatbot />}/>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
     </div>
   );
 }
 
-export default App
+function AppWrapper() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}
 
+export default AppWrapper;

@@ -255,7 +255,7 @@ const Home = () => {
                 </li>
                 <li>
                   <a
-                    href="/traditions"
+                    href="/heritage-map"
                     className="text-gray-400 hover:text-amber-500 transition text-sm"
                   >
                     Find on Map
