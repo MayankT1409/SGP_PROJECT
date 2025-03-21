@@ -69,7 +69,6 @@ const Home = () => {
               future generations.
             </p>
             <a
-              href="/explore"
               className="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg text-lg font-medium transition"
             >
               <a
