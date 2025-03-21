@@ -6,6 +6,15 @@ import Login from "./pages/Login";
 import Signup from './pages/Signup';
 import MapPage from './pages/MapPage';
 
+const NavbarLayout = ({ children }) => {   
+  return (     
+    <>       
+      <Navbar /> 
+      {children}         
+    </>   
+  ); 
+}; 
+
 function App() {
   const location = useLocation();
 

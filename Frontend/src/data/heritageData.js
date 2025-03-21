@@ -1,13 +1,13 @@
 export const heritageData = {
     "Rajasthan": [
-        { name: "Amber Fort",image: 'https://images.unsplash.com/photo-1565018054866-968e244dd8a8?auto=format&fit=crop&q=80', location: { lat: 26.9855, lng: 75.8513 }, description: "Magnificent fort complex built with red sandstone and marble" },
-        { name: "Jaisalmer Fort", location: { lat: 26.9124, lng: 70.9132 }, description: "One of the largest fully preserved fortified cities in the world" },
-        { name: "Hawa Mahal", location: { lat: 26.9239, lng: 75.8267 }, description: "Palace with a unique honeycomb facade with 953 small windows" }
+        { name: "Amber Fort",image: '../public/amberfort.png', location: { lat: 26.9855, lng: 75.8513 }, description: "Magnificent fort complex built with red sandstone and marble" },
+        { name: "Jaisalmer Fort",image:'../public/jaisalmer.png', location: { lat: 26.9124, lng: 70.9132 }, description: "One of the largest fully preserved fortified cities in the world" },
+        { name: "Hawa Mahal", image:'../public/hawamahal.png',location: { lat: 26.9239, lng: 75.8267 }, description: "Palace with a unique honeycomb facade with 953 small windows" }
     ],
     "Uttar Pradesh": [
-        { name: "Taj Mahal", location: { lat: 27.1751, lng: 78.0421 }, description: "Iconic white marble mausoleum built by Emperor Shah Jahan" },
-        { name: "Fatehpur Sikri", location: { lat: 27.0940, lng: 77.6700 }, description: "16th-century city that served as the capital of the Mughal Empire" },
-        { name: "Agra Fort", location: { lat: 27.1797, lng: 78.0215 }, description: "UNESCO World Heritage site and historical fort in Agra" }
+        { name: "Taj Mahal", image:'../public/taj-mahal.jpg',location: { lat: 27.1751, lng: 78.0421 }, description: "Iconic white marble mausoleum built by Emperor Shah Jahan" },
+        { name: "Fatehpur Sikri",image:'../public/fatehpur.png', location: { lat: 27.0940, lng: 77.6700 }, description: "16th-century city that served as the capital of the Mughal Empire" },
+        { name: "Agra Fort", image:'agrafort.png',location: { lat: 27.1797, lng: 78.0215 }, description: "UNESCO World Heritage site and historical fort in Agra" }
     ],
     "Gujarat": [
         { name: "Rani ki Vav", location: { lat: 23.8593, lng: 72.1030 }, description: "Intricately constructed stepwell built in the 11th century" },
