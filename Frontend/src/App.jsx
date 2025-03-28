@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import Signup from './pages/Signup';
 import MapPage from './pages/MapPage';
 import Chatbot from './pages/Chatbot.jsx';
+import Food from "./pages/Food";
+import Festival from "./pages/Festival";
 
 const NavbarLayout = ({ children }) => {   
   return (     
@@ -35,6 +37,8 @@ function App() {
         <Route path="/Chatbot" element={<Chatbot />}/>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/food" element={<Food />} />
+        <Route path="/festival" element={<Festival />} />
       </Routes>
     </div>
   );

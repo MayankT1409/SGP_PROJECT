@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-// Replace with your actual Gemini API key
 const genAI = new GoogleGenerativeAI('AIzaSyC2p5PxoPk54PA4Bzk4kGVNeohLOwgMpZg');
 
 const HeritageBot = () => {
@@ -23,10 +22,10 @@ const HeritageBot = () => {
     try {
       const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
       
-      // System instruction to constrain responses to Indian heritage
       const instruction = `You are an expert in Indian culture, history, heritage, traditions, art, cuisine, and festivals. 
       If the user's question is NOT related to Indian culture and heritage, politely inform them that you only answer questions about Indian heritage.`;
       
+      //here we check instruction which we give to ai and users question
       const result = await model.generateContent(instruction + "\n\nUser: " + userQuestion);
       const responseText = await result.response.text();
       
