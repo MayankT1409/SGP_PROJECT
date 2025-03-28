@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import "./home.css";
 
-
 const Home = () => {
-
+  // Array of image paths for the slideshow
   const images = [
     "/public/image1.jpg",
     "/public/image2.jpg",
@@ -16,11 +15,12 @@ const Home = () => {
   // State to track current image index
   const [currentImage, setCurrentImage] = useState(0);
 
-  // Effect to change image every 1.5 seconds
+  // Effect to change image every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevIndex) => (prevIndex + 1) % images.length);
-    }, 1500); 
+    }, 1500); // 5 seconds interval
+
     // Clean up interval on component unmount
     return () => clearInterval(interval);
   }, []);
@@ -56,7 +56,7 @@ const Home = () => {
   return (
     <div className="bg-stone-50 min-h-screen w-full overflow-x-hidden">
       {/* Hero Section */}
-      <section className="w-full pt-32 pb-16 left-0 text-center md:text-left">
+      <section className="w-full pt-32 pb-16 text-center md:text-left">
         <div className="max-w-screen-xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/2 space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
@@ -69,6 +69,7 @@ const Home = () => {
               future generations.
             </p>
             <a
+              href="/explore"
               className="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg text-lg font-medium transition"
             >
               <a
@@ -90,9 +91,8 @@ const Home = () => {
                   key={index}
                   src={img}
                   alt={`Cultural heritage showcase ${index + 1}`}
-                  className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                    index === currentImage ? "opacity-100" : "opacity-0"
-                  }`}
+                  className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentImage ? "opacity-100" : "opacity-0"
+                    }`}
                 />
               ))}
             </div>
@@ -170,7 +170,7 @@ const Home = () => {
               </p>
             </div>
             <a
-              href="/heritage-places"
+              href="/heritage-map"
               className="mt-4 md:mt-0 inline-flex items-center text-amber-700 hover:text-amber-800 font-medium"
             >
               View all places <FiArrowRight className="ml-2" />
@@ -201,13 +201,12 @@ const Home = () => {
                     {place.description}
                   </p>
                   <a
-                    href={`/heritage-places/${place.title
-                      .toLowerCase()
-                      .replace(/\s+/g, "-")}`}
+                    href={`https://en.wikipedia.org/wiki/${place.title.replace(/\s+/g, "_")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center text-amber-700 font-medium hover:underline"
                   >
-                    Explore this site{" "}
-                    <FiArrowRight className="ml-1" size={14} />
+                    Explore this site <FiArrowRight className="ml-1" size={14} />
                   </a>
                 </div>
               </div>
@@ -323,5 +322,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
