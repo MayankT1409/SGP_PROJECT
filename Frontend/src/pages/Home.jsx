@@ -69,7 +69,6 @@ const Home = () => {
               future generations.
             </p>
             <a
-              href="/explore"
               className="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg text-lg font-medium transition"
             >
               <a
@@ -102,57 +101,61 @@ const Home = () => {
       </section>
 
       {/* Featured Traditions */}
-      <section className="py-16 bg-amber-50 w-full">
-        <div className="max-w-screen-xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-8">
-            Featured Traditions
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Cultural Festivals",
-                image: "/public/festival.jpg",
-                alt: "Cultural festival celebration",
-              },
-              {
-                title: "Traditional Crafts",
-                image: "/public/crafts.jpg",
-                alt: "Traditional handmade crafts",
-              },
-              {
-                title: "Culinary Heritage",
-                image: "/public/food.jpg",
-                alt: "Traditional culinary dishes",
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-lg shadow-lg overflow-hidden"
-              >
-                <div className="h-48 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.alt}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                  <p className="text-gray-600 mb-4">
-                    Explore various traditions and cultural elements.
-                  </p>
-                  <a
-                    href="#"
-                    className="text-amber-700 font-medium hover:underline"
-                  >
-                    Learn more →
-                  </a>
-                </div>
-              </div>
-            ))}
+<section className="py-16 bg-amber-50 w-full">
+  <div className="max-w-screen-xl mx-auto px-6 text-center">
+    <h2 className="text-3xl font-bold text-gray-800 mb-8">
+      Featured Traditions
+    </h2>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {[
+        {
+          title: "Cultural Festivals",
+          image: "/public/festival.jpg",
+          alt: "Cultural festival celebration",
+          link: "/Festival",
+        },
+        {
+          title: "Traditional Crafts",
+          image: "/public/crafts.jpg",
+          alt: "Traditional handmade crafts",
+          link: "/crafts",
+        },
+        {
+          title: "Culinary Heritage",
+          image: "/public/food.jpg",
+          alt: "Traditional culinary dishes",
+          link: "/Food", // 🔥 Here’s the task you wanted
+        },
+      ].map((item, index) => (
+        <div
+          key={index}
+          className="bg-white rounded-lg shadow-lg overflow-hidden"
+        >
+          <div className="h-48 overflow-hidden">
+            <img
+              src={item.image}
+              alt={item.alt}
+              className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+            />
+          </div>
+          <div className="p-6">
+            <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+            <p className="text-gray-600 mb-4">
+              Explore various traditions and cultural elements.
+            </p>
+            <a
+              href={item.link}
+              className="text-amber-700 font-medium hover:underline"
+            >
+              Learn more →
+            </a>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* NEW SECTION: Explore Indian Heritage Places */}
       <section className="py-16 bg-white w-full">
