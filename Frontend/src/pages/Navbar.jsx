@@ -24,7 +24,7 @@ const Navbar = () => {
           </nav>
           
           {/* Join Button */}
-          <a href="/join" className="bg-amber-800 hover:bg-amber-900 text-white px-6 py-2 rounded-full transition ml-6">
+          <a href="/signup" className="bg-amber-800 hover:bg-amber-900 text-white px-6 py-2 rounded-full transition ml-6">
             Join Now
           </a>
         </div>
