@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
-  
+
     try {
       const { data } = await axios.post("http://localhost:5000/api/auth/login", formData);
       alert("Verification code sent to your email.");
@@ -27,13 +27,31 @@ const Login = () => {
     } catch (error) {
       console.error("Login Error:", error);  // 🔍 Log full error object
       console.error("Error Response:", error.response);  // 🔍 Log server response
-  
+
       setError(error.response?.data?.message || "Login failed.");
     }
-  
+
     setIsLoading(false);
   };
 
+  // const handleVerifyCode = async (e) => {
+  //   e.preventDefault();
+  //   setError('');
+  //   setIsLoading(true);
+
+  //   try {
+  //     const { data } = await axios.post("http://localhost:5000/api/auth/verify-code", {
+  //       email: formData.email,
+  //       code: verificationCode,
+  //     });
+
+  //     localStorage.setItem('authToken', data.token);
+  //     navigate('/');
+  //   } catch (error) {
+  //     setError(error.response?.data?.message || "Verification failed.");
+  //   }
+  //   setIsLoading(false);
+  // };
 
   const handleVerifyCode = async (e) => {
     e.preventDefault();
