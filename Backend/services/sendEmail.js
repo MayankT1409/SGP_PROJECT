@@ -24,6 +24,6 @@ const sendEmail = async (to, subject, message) => {
   }
 };
 
-sendEmail('tumbadiyamayank@gmail.com', 'Test Subject', '<p>This is a test email</p>');
+
 
 module.exports = sendEmail;

@@ -112,7 +112,9 @@ router.post('/verify-code', async (req, res) => {
     const user = await User.findOne({ email });
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "30d" });
 
-    res.status(200).json({ message: "Verification successful", token });
+    // res.status(200).json({ message: "Verification successful", token });
+    res.status(200).json({ message: "Verification successful", token, name: user.name });
+
   } catch (error) {
     console.error("Verification error:", error);
     res.status(500).json({ message: "Server error" });
