@@ -51,7 +51,7 @@ const HeritageBot = () => {
   };
 
   return (
-    <div className="flex flex-col h-[600px] w-full pt-18 max-w-md mx-auto rounded-lg overflow-hidden shadow-lg bg-white border border-amber-100">
+    <div className="flex flex-col h-[600px] w-full pt-2 max-w-md mx-auto rounded-lg overflow-hidden shadow-lg bg-white border border-amber-100">
       <div className="bg-gradient-to-r from-orange-600 to-amber-600 p-4 text-white">
         <div className="flex items-center">
           <div className="h-10 w-10 rounded-full bg-white text-orange-600 flex items-center justify-center font-bold text-xl">HC</div>

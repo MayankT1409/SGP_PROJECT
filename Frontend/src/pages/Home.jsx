@@ -249,34 +249,18 @@ const Home = () => {
                 </li>
                 <li>
                   <a
-                    href="/events"
-                    className="text-gray-400 hover:text-amber-500 transition text-sm"
-                  >
-                    Cultural Events
-                  </a>
-                </li>
-                <li>
-                  <a
                     href="/heritage-map"
                     className="text-gray-400 hover:text-amber-500 transition text-sm"
                   >
-                    Find on Map
+                    Heritage places
                   </a>
                 </li>
                 <li>
                   <a
-                    href="/gallery"
+                    href="/chatbot"
                     className="text-gray-400 hover:text-amber-500 transition text-sm"
                   >
-                    Gallery
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/about"
-                    className="text-gray-400 hover:text-amber-500 transition text-sm"
-                  >
-                    About Us
+                    Chatbot
                   </a>
                 </li>
                 <li>

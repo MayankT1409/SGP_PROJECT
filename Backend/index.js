@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db'); // Import db.js
 const authRoutes = require('./routes/authRoutes.js');
 
+
+
 dotenv.config();
 
 const app = express();

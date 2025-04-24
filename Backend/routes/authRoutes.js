@@ -8,7 +8,8 @@ const User = require('../models/User');
 const sendEmail = require('../services/sendEmail');
 const nodemailer = require("nodemailer");
 const VerificationCode = require('../models/VerificationCode');
-
+const path = require("path");
+const fs = require("fs");
 const router = express.Router();
 
 
@@ -50,6 +51,51 @@ router.post('/signup', async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
+// router.post('/login', async (req, res) => {
+//   const { email, password } = req.body;
+//   console.log("Received login request for:", email);
+
+//   try {
+//     const user = await User.findOne({ email });
+//     if (!user) {
+//       console.log("User not found.");
+//       return res.status(401).json({ message: "Invalid credentials" });
+//     }
+
+//     console.log("Entered Password:", password);
+//     console.log("Stored Hashed Password:", user.password);
+
+//     const isMatch = await bcrypt.compare(password, user.password);
+//     console.log("Password match:", isMatch);
+
+//     if (!isMatch) {
+//       console.log("Password incorrect.");
+//       return res.status(401).json({ message: "Invalid credentials" });
+//     }
+
+//     // 🔹 Generate a 6-digit verification code
+//     const verificationCode = generateVerificationCode();
+
+//     // 🔹 Save to database
+//     await VerificationCode.findOneAndUpdate(
+//       { email },
+//       { code: verificationCode, expiresAt: Date.now() + 10 * 60 * 1000 },
+//       { upsert: true, new: true }
+//     );
+
+//     // 🔹 Send email with the verification code
+//     await sendEmail(email, "Your Verification Code", `<p>Your verification code is: <strong>${verificationCode}</strong></p>`);
+
+//     // console.log(`✅ Verification code sent to ${email}`);
+
+//     res.status(200).json({ message: "Verification code sent to email", email });
+
+//   } catch (err) {
+//     console.error("Error in login:", err);
+//     res.status(500).json({ message: "Server error" });
+//   }
+// });
+
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   console.log("Received login request for:", email);
@@ -58,6 +104,7 @@ router.post('/login', async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) {
       console.log("User not found.");
+      logLoginAttempt(email, "FAILED - User not found");
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
@@ -69,6 +116,7 @@ router.post('/login', async (req, res) => {
 
     if (!isMatch) {
       console.log("Password incorrect.");
+      logLoginAttempt(email, "FAILED - Incorrect password");
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
@@ -85,15 +133,29 @@ router.post('/login', async (req, res) => {
     // 🔹 Send email with the verification code
     await sendEmail(email, "Your Verification Code", `<p>Your verification code is: <strong>${verificationCode}</strong></p>`);
 
-    // console.log(`✅ Verification code sent to ${email}`);
+    console.log(`✅ Verification code sent to ${email}`);
+    
+    logLoginAttempt(email, "SUCCESS - Verification code sent");
 
     res.status(200).json({ message: "Verification code sent to email", email });
 
   } catch (err) {
     console.error("Error in login:", err);
+    logLoginAttempt(email, "ERROR - Server error");
     res.status(500).json({ message: "Server error" });
   }
 });
+
+function logLoginAttempt(email, status) {
+  const logData = `${new Date().toISOString()} - Email: ${email} - Status: ${status}\n`;
+  const logFilePath = path.join(__dirname, 'logs.txt');
+
+  fs.appendFile(logFilePath, logData, (err) => {
+    if (err) {
+      console.error("Error writing to log file:", err);
+    }
+  });
+}
 
 //email verification route
 router.post('/verify-code', async (req, res) => {
