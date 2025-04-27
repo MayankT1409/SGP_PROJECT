@@ -53,27 +53,53 @@ const Login = () => {
   //   setIsLoading(false);
   // };
 
+  //   const handleVerifyCode = async (e) => {
+  //     e.preventDefault();
+  //     setError('');
+  //     setIsLoading(true);
+
+  //     try {
+  //         const { data } = await axios.post("http://localhost:5000/api/auth/verify-code", {
+  //             email: formData.email,
+  //             code: verificationCode,
+  //         });
+
+  //         // Store user data in localStorage
+  //         localStorage.setItem('authToken', data.token);
+  //         localStorage.setItem('user', JSON.stringify({ name: formData.email.split('@')[0] })); // Example name storage
+
+  //         navigate('/');
+  //     } catch (error) {
+  //         setError(error.response?.data?.message || "Verification failed.");
+  //     }
+  //     setIsLoading(false);
+  // };
   const handleVerifyCode = async (e) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
 
     try {
-        const { data } = await axios.post("http://localhost:5000/api/auth/verify-code", {
-            email: formData.email,
-            code: verificationCode,
-        });
+      const { data } = await axios.post("http://localhost:5000/api/auth/verify-code", {
+        email: formData.email,
+        code: verificationCode,
+      });
 
-        // Store user data in localStorage
-        localStorage.setItem('authToken', data.token);
-        localStorage.setItem('user', JSON.stringify({ name: formData.email.split('@')[0] })); // Example name storage
+      // Store both name and email now
+      localStorage.setItem('authToken', data.token);
+      localStorage.setItem('user', JSON.stringify({
+        name: formData.email.split('@')[0],
+        email: formData.email
+      }));
 
-        navigate('/');
+      navigate('/profile');
     } catch (error) {
-        setError(error.response?.data?.message || "Verification failed.");
+      setError(error.response?.data?.message || "Verification failed.");
     }
     setIsLoading(false);
-};
+  };
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#FAF6E9] to-[#E3D5B8]">

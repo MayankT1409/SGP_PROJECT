@@ -15,7 +15,7 @@ const Festival = () => {
 
   // Define the correct month order
   const monthOrder = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
 
@@ -67,11 +67,10 @@ const Festival = () => {
               <button
                 key={index}
                 onClick={() => handleMonthClick(month)}
-                className={`block w-full text-left px-3 py-2 rounded-lg ${
-                  selectedMonth === month
+                className={`block w-full text-left px-3 py-2 rounded-lg ${selectedMonth === month
                     ? "bg-amber-700 text-white"
                     : "text-gray-700 hover:bg-gray-100"
-                }`}
+                  }`}
               >
                 {month}
               </button>
@@ -94,7 +93,7 @@ const Festival = () => {
           Festivals of India
         </h1>
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          {filteredFestivals.map((festival, index) => (
+          {/* {filteredFestivals.map((festival, index) => (
             <div
               key={index}
               className="bg-white p-4 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition"
@@ -107,7 +106,33 @@ const Festival = () => {
               <p className="text-gray-600 text-sm mt-2">{festival.Festival_name}</p>
               <p className="text-gray-400 text-xs mt-1">{festival.month}</p>
             </div>
+          ))} */}
+          {filteredFestivals.map((festival, index) => (
+            <div
+              key={index}
+              className="bg-white p-4 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition"
+            >
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                {festival.name}
+              </h3>
+
+              <p className="text-gray-600 text-sm mt-2">{festival.Festival_name}</p>
+              <p className="text-gray-400 text-xs mt-1">{festival.month}</p>
+
+              {/* Wikipedia Link */}
+              {festival.wiki && (
+                <a
+                  href={festival.wiki}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-amber-600 hover:underline text-sm mt-3 block"
+                >
+                  Get More Details
+                </a>
+              )}
+            </div>
           ))}
+
         </div>
       </main>
     </div>
