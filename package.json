@@ -1,0 +1,9 @@
+{
+  "name": "heritage-connect-fullstack",
+  "version": "1.0.0",
+  "scripts": {
+    "install-all": "cd Backend && npm install && cd ../Frontend && npm install",
+    "build": "cd Frontend && npm run build",
+    "start": "cd Backend && npm start"
+  }
+}
