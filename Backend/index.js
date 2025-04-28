@@ -3,8 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db'); // Import db.js
 const authRoutes = require('./routes/authRoutes.js');
-
-
+const path = require('path'); // <-- important for serving frontend build
 
 dotenv.config();
 
@@ -12,23 +11,33 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
   credentials: true,
 }));
-
 
 app.use(express.json());
 
 // Connect to MongoDB
-connectDB(); 
+connectDB();
 
-// Routes
+// API Routes
 app.use('/api/auth', authRoutes);
 
-// Basic route for testing
-app.get('/', (req, res) => {
-  res.send('HeritageConnect API is running');
-});
+// ------------------------------------
+// Serve frontend
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '..', 'Frontend', 'dist')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'Frontend', 'dist', 'index.html'));
+  });
+} else {
+  // Basic route for testing in development
+  app.get('/', (req, res) => {
+    res.send('HeritageConnect API is running');
+  });
+}
+// ------------------------------------
 
 // Error handling middleware
 app.use((err, req, res, next) => {
