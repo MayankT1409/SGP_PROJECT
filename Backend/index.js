@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const connectDB = require('./config/db'); // Import db.js
+const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes.js');
-const path = require('path'); // <-- important for serving frontend build
+const path = require('path');
 
 dotenv.config();
 
@@ -23,23 +23,21 @@ connectDB();
 // API Routes
 app.use('/api/auth', authRoutes);
 
-// ------------------------------------
 // Serve frontend
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '..', 'Frontend', 'dist')));
+  const frontendPath = path.join(__dirname, '..', 'Frontend', 'dist');
+  app.use(express.static(frontendPath));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'Frontend', 'dist', 'index.html'));
+    res.sendFile(path.resolve(frontendPath, 'index.html'));
   });
 } else {
-  // Basic route for testing in development
   app.get('/', (req, res) => {
     res.send('HeritageConnect API is running');
   });
 }
-// ------------------------------------
 
-// Error handling middleware
+// Error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Internal Server Error' });
