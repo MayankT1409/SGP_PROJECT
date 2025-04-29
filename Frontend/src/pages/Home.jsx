@@ -5,7 +5,7 @@ import "./home.css";
 const Home = () => {
   // Array of image paths for the slideshow
   const images = [
-    "/public/image1.jpg",
+    "/images/gond22.jpg",
     "/public/image2.jpg",
     "/public/image3.jpg",
     "/public/image4.jpg",
@@ -110,19 +110,19 @@ const Home = () => {
       {[
         {
           title: "Cultural Festivals",
-          image: "/public/festival.jpg",
+          image: "/images/gond22.jpg",
           alt: "Cultural festival celebration",
           link: "/Festival",
         },
         {
           title: "Traditional Crafts",
-          image: "/public/crafts.jpg",
+          image: "/images/gond22.jpg",
           alt: "Traditional handmade crafts",
           link: "/crafts",
         },
         {
           title: "Culinary Heritage",
-          image: "/public/food.jpg",
+          image: "/images/gond22.jpg",
           alt: "Traditional culinary dishes",
           link: "/Food", // 🔥 Here’s the task you wanted
         },
