@@ -168,11 +168,13 @@ const Signup = () => {
       //   { name, email, password },
       //   config
       // );
+     
       const { data } = await axios.post(
-        'http://localhost:5000/api/auth/signup',
+        `${import.meta.env.VITE_API_URL}/auth/signup`,
         { name, email, password },
         config
       );
+      
 
       localStorage.setItem('authToken', data.token);
       setIsLoading(false);
