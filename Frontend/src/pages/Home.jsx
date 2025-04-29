@@ -124,7 +124,7 @@ const Home = () => {
           title: "Culinary Heritage",
           image: "/images/gond22.jpg",
           alt: "Traditional culinary dishes",
-          link: "/Food", // 🔥 Here’s the task you wanted
+          link: "/Food", 
         },
       ].map((item, index) => (
         <div
