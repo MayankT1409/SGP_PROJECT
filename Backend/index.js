@@ -12,8 +12,8 @@ const app = express();
 
 // CORS config
 const allowedOrigins = [
-  'http://localhost:5173',                  // development
-  'https://sgp-project-1.onrender.com'      // production
+  'http://localhost:5173',                  
+  'https://sgp-project-1.onrender.com'      
 ];
 
 app.use(cors({
@@ -21,10 +21,6 @@ app.use(cors({
   credentials: true
 }));
 
-// app.use(cors({
-//   origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-//   credentials: true,
-// }));
 
 app.use(express.json());
 
