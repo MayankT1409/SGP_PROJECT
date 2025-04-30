@@ -14,3 +14,8 @@
 2025-04-27T17:15:34.309Z - Email: tirthsheth83@gmail.com - Status: SUCCESS - Verification code sent
 2025-04-28T21:09:30.879Z - Email: tumbadiyamayank@gmail.com - Status: SUCCESS - Verification code sent
 2025-04-29T23:52:21.845Z - Email: mayank230tumbadiya@gmail.com - Status: SUCCESS - Verification code sent
+2025-04-29T23:58:01.718Z - Email: mayank230tumbadiya@gmail.com - Status: SUCCESS - Verification code sent
+2025-04-30T00:07:27.312Z - Email: tumbadiyamayank@gmail.com - Status: FAILED - Incorrect password
+2025-04-30T00:07:36.006Z - Email: tumbadiyamayank@gmail.com - Status: SUCCESS - Verification code sent
+2025-04-30T00:10:30.122Z - Email: tumbadiyamayank@gmail.com - Status: SUCCESS - Verification code sent
+2025-04-30T02:54:27.197Z - Email: tumbadiyamayank@gmail.com - Status: SUCCESS - Verification code sent
