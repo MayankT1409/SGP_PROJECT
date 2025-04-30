@@ -5,11 +5,11 @@ import "./home.css";
 const Home = () => {
   // Array of image paths for the slideshow
   const images = [
-    "/images/gond22.jpg",
-    "/public/image2.jpg",
-    "/public/image3.jpg",
-    "/public/image4.jpg",
-    "/public/image5.jpg",
+    "/images/himage1.jpg",
+    "/images/himage2.jpg",
+    "/images/himage3.jpg",
+    "/images/himage4.jpg",
+    "/images/himage5.jpg",
   ];
 
   // State to track current image index
@@ -31,25 +31,25 @@ const Home = () => {
       title: "Taj Mahal",
       location: "Agra, Uttar Pradesh",
       description: "Iconic white marble mausoleum built by Shah Jahan",
-      image: "/public/taj-mahal.jpg",
+      image: "/images/taj-mahal.jpg",
     },
     {
       title: "Hampi",
       location: "Karnataka",
       description: "Ancient ruins of the Vijayanagara Empire",
-      image: "/public/hampi.jpg",
+      image: "/images/hampi.jpg",
     },
     {
       title: "Khajuraho Temples",
       location: "Madhya Pradesh",
       description: "Medieval Hindu and Jain temples with intricate carvings",
-      image: "/public/khajuraho.jpg",
+      image: "/images/khajuraho.jpg",
     },
     {
       title: "Konark Sun Temple",
       location: "Odisha",
       description: "13th-century temple dedicated to the sun god Surya",
-      image: "/public/konark.jpg",
+      image: "/images/konark.jpg",
     },
   ];
 
@@ -110,19 +110,19 @@ const Home = () => {
       {[
         {
           title: "Cultural Festivals",
-          image: "/images/gond22.jpg",
+          image: "/images/festival.jpg",
           alt: "Cultural festival celebration",
           link: "/Festival",
         },
         {
           title: "Traditional Crafts",
-          image: "/images/gond22.jpg",
+          image: "/images/crafts.jpg",
           alt: "Traditional handmade crafts",
           link: "/crafts",
         },
         {
           title: "Culinary Heritage",
-          image: "/images/gond22.jpg",
+          image: "/images/food.jpg",
           alt: "Traditional culinary dishes",
           link: "/Food", 
         },
