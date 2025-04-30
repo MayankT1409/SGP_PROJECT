@@ -34,53 +34,14 @@ const Login = () => {
     setIsLoading(false);
   };
 
-  // const handleVerifyCode = async (e) => {
-  //   e.preventDefault();
-  //   setError('');
-  //   setIsLoading(true);
 
-  //   try {
-  //     const { data } = await axios.post("http://localhost:5000/api/auth/verify-code", {
-  //       email: formData.email,
-  //       code: verificationCode,
-  //     });
-
-  //     localStorage.setItem('authToken', data.token);
-  //     navigate('/');
-  //   } catch (error) {
-  //     setError(error.response?.data?.message || "Verification failed.");
-  //   }
-  //   setIsLoading(false);
-  // };
-
-  //   const handleVerifyCode = async (e) => {
-  //     e.preventDefault();
-  //     setError('');
-  //     setIsLoading(true);
-
-  //     try {
-  //         const { data } = await axios.post("http://localhost:5000/api/auth/verify-code", {
-  //             email: formData.email,
-  //             code: verificationCode,
-  //         });
-
-  //         // Store user data in localStorage
-  //         localStorage.setItem('authToken', data.token);
-  //         localStorage.setItem('user', JSON.stringify({ name: formData.email.split('@')[0] })); // Example name storage
-
-  //         navigate('/');
-  //     } catch (error) {
-  //         setError(error.response?.data?.message || "Verification failed.");
-  //     }
-  //     setIsLoading(false);
-  // };
   const handleVerifyCode = async (e) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
 
     try {
-      const { data } = await axios.post("http://localhost:5000/api/auth/verify-code", {
+      const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/auth/verify-code`, {
         email: formData.email,
         code: verificationCode,
       });
