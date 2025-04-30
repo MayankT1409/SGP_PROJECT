@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 
 let isScriptLoaded = false;
@@ -57,47 +56,67 @@ export function Map({ selectedSite, allMarkers }) {
         zoom: 5,
       });
 
-      // Add an initial red marker
-      initialMarkerRef.current = new window.google.maps.Marker({
-        position: { lat: 20.5937, lng: 78.9629 },
-        map: googleMapRef.current,
-        title: 'Initial Marker',
-        icon: {
-          url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
-        }
-      });
-
       infoWindowRef.current = new window.google.maps.InfoWindow();
       updateMarkers();
     } catch (error) {
       console.error('Error creating map:', error);
     }
   };
-
   const updateMarkers = () => {
     if (!googleMapRef.current || !allMarkers) return;
-
+  
     markersRef.current.forEach(marker => marker.setMap(null));
     markersRef.current = [];
-
+  
     allMarkers.forEach(({ site }) => {
       if (!site.LATITUDE || !site.LONGITUDE) return;
-      const location = { lat: site.LATITUDE, lng: site.LONGITUDE };
-
+  
+      const lat = parseFloat(site.LATITUDE);
+      const lng = parseFloat(site.LONGITUDE);
+      const location = { lat, lng };
+  
       const marker = new window.google.maps.Marker({
         position: location,
         map: googleMapRef.current,
         title: site.MONUMENT,
       });
-
-      marker.addListener('click', () => {
-        googleMapRef.current.setCenter(location);
-        googleMapRef.current.setZoom(15);
+  
+      // Mouseover: show photo + description + directions
+      marker.addListener('mouseover', () => {
+        const content = `
+          <div style="max-width: 250px;">
+            <img src="${site.IMAGE || '/images/fallback.jpg'}" alt="${site.MONUMENT}" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 8px;" onerror="this.src='/images/fallback.jpg'" />
+            <h3 style="margin: 0 0 4px; font-size: 16px;">${site.MONUMENT}</h3>
+            <p style="margin: 0 0 6px; font-size: 13px;">${site.DESCRIPTION || 'No description available.'}</p>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}" target="_blank" rel="noopener" style="color: #1a73e8; text-decoration: underline;">Get Directions</a>
+          </div>
+        `;
+        infoWindowRef.current.setContent(content);
+        infoWindowRef.current.setPosition(location);
+        infoWindowRef.current.open(googleMapRef.current, marker);
       });
-
+  
+      // Optional: close InfoWindow on mouseout
+      marker.addListener('mouseover', () => {
+        const content = `
+          <div style="max-width: 250px; font-family: Arial, sans-serif;">
+            <img src="${site.IMAGE || '/images/fallback.jpg'}" alt="${site.MONUMENT}" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 8px;" onerror="this.src='/images/fallback.jpg'" />
+            <h3 style="margin: 0 0 4px; font-size: 16px; font-weight: bold;">${site.MONUMENT}</h3>
+            <p style="margin: 0 0 6px; font-size: 13px; color: #555;">${site.DESCRIPTION || 'No description available.'}</p>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}" target="_blank" rel="noopener"
+              style="display: inline-flex; align-items: center; color: #1a73e8; font-size: 14px; text-decoration: none;">
+            Get Directions
+            </a>
+          </div>
+        `;
+        infoWindowRef.current.setContent(content);
+        infoWindowRef.current.open(googleMapRef.current, marker);
+      });
+  
       markersRef.current.push(marker);
     });
   };
+  
 
   useEffect(() => {
     initializeMap();
@@ -106,6 +125,33 @@ export function Map({ selectedSite, allMarkers }) {
   useEffect(() => {
     updateMarkers();
   }, [allMarkers]);
+
+  useEffect(() => {
+    if (!googleMapRef.current || !selectedSite) return;
+
+    const { lat, lng, site } = selectedSite;
+
+    const location = {
+      lat: parseFloat(lat),
+      lng: parseFloat(lng),
+    };
+
+    // Center the map and zoom in
+    googleMapRef.current.setCenter(location);
+    googleMapRef.current.setZoom(15);
+
+    // Optional: show info window
+    if (infoWindowRef.current) {
+      infoWindowRef.current.setContent(`
+        <div>
+          <h3>${site.MONUMENT}</h3>
+          <p>${site.STATE}</p>
+        </div>
+      `);
+      infoWindowRef.current.setPosition(location);
+      infoWindowRef.current.open(googleMapRef.current);
+    }
+  }, [selectedSite]);
 
   return <div ref={mapRef} className="relative w-full h-full" />;
 }

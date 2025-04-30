@@ -18,12 +18,11 @@ function MapPage() {
     setAllMarkers(markers);
   }, []);
 
-  // Get unique state names
-  const states = [...new Set(heritageData.map(site => site.STATE))];
+  const states = [...new Set(heritageData.map(site => site.STATE).filter(state => typeof state === 'string'))];
 
-  // Filter states based on search query
+
   const filteredStates = states.filter(state =>
-    state.toLowerCase().includes(searchQuery.toLowerCase())
+    typeof state === 'string' && state.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -32,12 +31,6 @@ function MapPage() {
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
-            {/* <button
-              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="p-2 rounded-md text-gray-500 hover:text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
-            >
-              {isSidebarOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button> */}
           </div>
         </div>
       </header>
@@ -76,9 +69,9 @@ function MapPage() {
                         >
                           <div className="flex-shrink-0">
                             <img
-                              src={site.IMAGE || 'https://via.placeholder.com/150'}
+                              src={site.IMAGE}
                               alt={site.MONUMENT}
-                              onError={(e) => { e.target.src = 'https://via.placeholder.com/150'; }}
+                              onError={(e) => { e.target.src = '/images/fallback.jpg'; }}
                               className="h-16 w-16 rounded-md object-cover"
                             />
                           </div>
@@ -114,3 +107,4 @@ function MapPage() {
 }
 
 export default MapPage;
+
