@@ -11,7 +11,9 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendVerificationEmail = async (email, token) => {
-  const verificationLink = `http://localhost:5000/api/auth/verify/${token}`;
+  // const verificationLink = `http://localhost:5000/api/auth/verify/${token}`;
+  const verificationLink = `https://sgp-project-1.onrender.com/api/auth/verify/${token}`;
+
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
